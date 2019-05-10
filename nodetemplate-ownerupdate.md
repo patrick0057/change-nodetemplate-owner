@@ -21,7 +21,7 @@ np-pnxwz   1h
    `kubectl -n <cluster ID> get nodepool <nodepool ID> -o yaml | grep nodeTemplateName| cut -d : -f 3`
 
     Example:   
-        ```
+        ```bash
         root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nodeTemplateName| cut -d : -f 3
         nt-9bn8d
         ```
