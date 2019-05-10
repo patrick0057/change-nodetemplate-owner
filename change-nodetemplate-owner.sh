@@ -21,7 +21,6 @@ done
 echo Cluster: $clusterid
 echo New Owner: $newowner
 echo 
-exit 1
 if ! hash kubectl 2>/dev/null
 then
         echo "!!!kubectl was not found!!!"
@@ -50,5 +49,6 @@ do
         echo -e "\e[31mpatching $nodepoolid old owner: $oldowner new owner: $newowner\e[0m"
         kubectl -n $clusterid patch nodepool $nodepoolid -p '{"spec":{"nodeTemplateName": "'$newowner:$nodetemplateid'"}}' --type=merge
 done
-
+echo
+echo
 echo -e "\e[92mWe're all done!  If you've used this script on a cluster previously, you'll likely see kubectl complain about existing nodetemplates.  This is safe to ignore.\e[0m"
