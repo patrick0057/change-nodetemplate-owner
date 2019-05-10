@@ -10,13 +10,13 @@ This guide will show you how to change your nodetemplate owner for situations wh
    
    `kubectl get nodepool -n <cluster ID>`
    
-Example: 
+    Example: 
 
-```
-root@86993adde452:~# kubectl -n c-48x9z get nodepool
-NAME       AGE
-np-pnxwz   1h
-```
+    ```
+    root@86993adde452:~# kubectl -n c-48x9z get nodepool
+    NAME       AGE
+    np-pnxwz   1h
+    ```
 5. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: 
 
    `kubectl -n <cluster ID> get nodepool <nodepool ID> -o yaml | grep nodeTemplateName| cut -d : -f 3`
@@ -31,12 +31,10 @@ np-pnxwz   1h
 
    `kubectl -n <original owner ID> get nodetemplate`
 
-3. We can put fenced code blocks inside nested bullets, too.
-   1. Like this:
+1. This is a numbered list.
+2. I'm going to include a fenced code block as part of this bullet:
 
-        ```c
-        printf("Hello, World!");
-        ```
-
-   2. The key is to indent your fenced block by **(4 * bullet_indent_level)** spaces.
-   3. Also need to put a separating newline above and below the fenced block.
+    ```
+    Code
+    More Code
+    ```
