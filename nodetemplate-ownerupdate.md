@@ -16,13 +16,9 @@ This guide will show you how to change your nodetemplate owner for situations wh
         root@86993adde452:~#
         ```
 4. We need to identify the nodepool ID associated with this cluster using the following command: 
-   
-   `kubectl get nodepool -n <cluster ID>`
-   
-    Example: 
 
     ```bash
-    root@86993adde452:~# kubectl -n c-48x9z get nodepool
+    root@86993adde452:~# kubectl -n $clusterid get nodepool
     NAME       AGE
     np-pnxwz   1h
     root@86993adde452:~# export nodepoolid=np-pnxwz
@@ -30,17 +26,25 @@ This guide will show you how to change your nodetemplate owner for situations wh
     ```
 5. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: 
 
-   `kubectl -n <cluster ID> get nodepool <nodepool ID> -o yaml | grep nodeTemplateName| cut -d : -f 3`
-
     Example:   
     ```bash
-    root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nodeTemplateName| cut -d : -f 3
+    root@86993adde452:~# kubectl -n $clusterid get nodepool $nodepoolid -o yaml | grep nodeTemplateName| cut -d : -f 3
     nt-9bn8d
     root@86993adde452:~# export nodetemplateid=nt-9bn8d
     root@86993adde452:~# 
     ```
-6. Dump the nodetemplate in question using the following command: 
+6. Patch the nodepool in question using the following command:
+    ```bash
+    root@86993adde452:~# kubectl -n $clusterid patch nodepool $nodepoolid -p '{"spec":{"nodeTemplateName": "'$newowner:$nodetemplateid'"}}' --type=merge
+    nodepool.management.cattle.io/np-pnxwz patched
+    root@86993adde452:~#
+    ```
+7. Dump the nodetemplate in question, patch it then reapply it.
 
-   `kubectl -n <original owner ID> get nodetemplate`
+    ```bash
+    kubectl -n $originalowner get nodetemplate $nodetemplateid -o yaml > ~/$nodetemplateid.yaml
+    sed -i 's/'$originalowner'/'$newowner'/g' ~/$nodetemplateid.yaml
+    kubectl apply --namespace=$newowner -f ~/$nodetemplateid.yaml
+    ```
 
 
