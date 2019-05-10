@@ -21,7 +21,7 @@ np-pnxwz   1h
    `kubectl -n <cluster ID> get nodepool <nodepool ID> -o yaml | grep nodeTemplateName| cut -d : -f 3`
 
     Example:   
-        ```bash
+        ```
         root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nodeTemplateName| cut -d : -f 3
         nt-9bn8d
         ```
@@ -30,3 +30,12 @@ np-pnxwz   1h
 
    `kubectl -n <original owner ID> get nodetemplate`
 
+3. We can put fenced code blocks inside nested bullets, too.
+   1. Like this:
+
+        ```c
+        printf("Hello, World!");
+        ```
+
+   2. The key is to indent your fenced block by **(4 * bullet_indent_level)** spaces.
+   3. Also need to put a separating newline above and below the fenced block.
