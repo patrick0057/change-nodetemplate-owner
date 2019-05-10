@@ -16,7 +16,7 @@ root@86993adde452:~# kubectl -n c-48x9z get nodepool
 NAME       AGE
 np-pnxwz   1h
 ```
- 4. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: 
+ 5. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: 
  
 `kubectl -n <cluster ID> get nodepool <nodepool ID> -o yaml | grep nodeTemplateName| cut -d : -f 3`
 ```
@@ -24,6 +24,6 @@ root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nod
 nt-9bn8d
 ```
 
-5. Dump the nodetemplate in question using the following command: 
+6. Dump the nodetemplate in question using the following command: 
 
 `kubectl -n <original owner ID> get nodetemplate`
