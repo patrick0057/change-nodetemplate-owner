@@ -10,6 +10,11 @@ This guide will show you how to change your nodetemplate owner for situations wh
     ```
 3. Now we need the user ID of the original nodetemplate owner and the user ID of the future nodetemplate owner.  Navigate to Global> Users> to find the IDs.
    * In my tutorial **user-xfmrm** will be the original nodetemplate owner and **u-7z9jc** will be the new nodetemplate owner.
+        ```bash
+        root@86993adde452:~# export originalowner=user-xfmrm
+        root@86993adde452:~# export newowner=u-7z9jc
+        root@86993adde452:~#
+        ```
 4. We need to identify the nodepool ID associated with this cluster using the following command: 
    
    `kubectl get nodepool -n <cluster ID>`
@@ -20,6 +25,8 @@ This guide will show you how to change your nodetemplate owner for situations wh
     root@86993adde452:~# kubectl -n c-48x9z get nodepool
     NAME       AGE
     np-pnxwz   1h
+    root@86993adde452:~# export nodepoolid=np-pnxwz
+    root@86993adde452:~#
     ```
 5. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: 
 
@@ -29,6 +36,8 @@ This guide will show you how to change your nodetemplate owner for situations wh
     ```bash
     root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nodeTemplateName| cut -d : -f 3
     nt-9bn8d
+    root@86993adde452:~# export nodetemplateid=nt-9bn8d
+    root@86993adde452:~# 
     ```
 6. Dump the nodetemplate in question using the following command: 
 
