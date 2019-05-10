@@ -11,6 +11,7 @@ This guide will show you how to change your nodetemplate owner for situations wh
    `kubectl get nodepool -n <cluster ID>`
    
 Example: 
+
 ```
 root@86993adde452:~# kubectl -n c-48x9z get nodepool
 NAME       AGE
