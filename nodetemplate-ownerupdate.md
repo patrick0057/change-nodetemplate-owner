@@ -25,8 +25,7 @@ This guide will show you how to change your nodetemplate owner for situations wh
     root@86993adde452:~#
     ```
 5. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: 
-
-    Example:   
+  
     ```bash
     root@86993adde452:~# kubectl -n $clusterid get nodepool $nodepoolid -o yaml | grep nodeTemplateName| cut -d : -f 3
     nt-9bn8d
