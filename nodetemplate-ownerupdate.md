@@ -7,11 +7,12 @@ This guide will show you how to change your nodetemplate owner for situations wh
   * In my tutorial **user-xfmrm** will be the original nodetemplate owner and **u-7z9jc** will be the new nodetemplate owner.
 3. Open a terminal with kubectl pointing to your local Rancher cluster.
 4. We need to identify the nodepool ID associated with this cluster using the following command: `kubectl get nodepool -n <cluster ID>`
-   Example: `root@86993adde452:~# kubectl -n **c-48x9z** get nodepool
+   Example: 
+ ```root@86993adde452:~# kubectl -n c-48x9z get nodepool
 NAME       AGE
-**np-pnxwz**   1h`
- 4. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: `kubectl -n **<cluster ID>** get nodepool **<nodepool ID>** -o yaml | grep nodeTemplateName| cut -d : -f 3`
- `root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nodeTemplateName| cut -d : -f 3
-nt-9bn8d`
+np-pnxwz   1h```
+ 4. Using the nodepool ID and cluster ID, use the following command to identify the nodetemplate ID: `kubectl -n <cluster ID> get nodepool <nodepool ID> -o yaml | grep nodeTemplateName| cut -d : -f 3`
+ ```root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nodeTemplateName| cut -d : -f 3
+nt-9bn8d```
 
 4. Dump the nodetemplate in question using the following command: `kubectl -n <original owner ID> get nodetemplate
