@@ -12,7 +12,7 @@ This guide will show you how to change your nodetemplate owner for situations wh
    
     Example: 
 
-    ```
+    ```bash
     root@86993adde452:~# kubectl -n c-48x9z get nodepool
     NAME       AGE
     np-pnxwz   1h
@@ -22,7 +22,7 @@ This guide will show you how to change your nodetemplate owner for situations wh
    `kubectl -n <cluster ID> get nodepool <nodepool ID> -o yaml | grep nodeTemplateName| cut -d : -f 3`
 
     Example:   
-    ```
+    ```bash
     root@86993adde452:~# kubectl -n c-48x9z get nodepool np-pnxwz -o yaml | grep nodeTemplateName| cut -d : -f 3
     nt-9bn8d
     ```
@@ -31,10 +31,4 @@ This guide will show you how to change your nodetemplate owner for situations wh
 
    `kubectl -n <original owner ID> get nodetemplate`
 
-1. This is a numbered list.
-2. I'm going to include a fenced code block as part of this bullet:
 
-    ```
-    Code
-    More Code
-    ```
