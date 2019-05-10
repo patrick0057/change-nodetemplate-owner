@@ -1,4 +1,5 @@
-#!/bin/sh
+newowner=''
+clusterid=''
 while getopts "h:c:n:" opt; do
   case ${opt} in
     h ) # process option h
@@ -18,6 +19,11 @@ while getopts "h:c:n:" opt; do
   esac
 done
 #shift $((OPTIND -1))
+if [ -z "$clusterid" ] || [ -z "$newowner" ];
+then
+        echo "Usage: change-nodetemplate-owner.sh -c CLUSTER-ID -n NEW-OWNER-ID"
+        exit 1
+fi
 echo Cluster: $clusterid
 echo New Owner: $newowner
 echo 
