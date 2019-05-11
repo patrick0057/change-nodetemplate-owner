@@ -1,6 +1,9 @@
 #!/bin/bash
 newowner=''
 clusterid=''
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
 while getopts "h:c:n:" opt; do
   case ${opt} in
     h ) # process option h
@@ -25,11 +28,8 @@ then
         echo "Usage: change-nodetemplate-owner.sh -c CLUSTER-ID -n NEW-OWNER-ID"
         exit 1
 fi
-echo Cluster: $clusterid
-echo New Owner: $newowner
-echo 
-kubectl get node
-echo
+echo -e "${green}Cluster: $clusterid${reset}"
+echo -e "${green}New Owner: $newowner${reset}"
 if ! hash kubectl 2>/dev/null
 then
         echo "!!!kubectl was not found!!!"
@@ -48,16 +48,23 @@ then
         echo "mv jq-linux64 /bin/jq"
         exit 1
 fi
-
+if [ ! -f ~/.kube/config ] && [ -z "$KUBECONFIG" ];
+then
+	echo "${red}~/.kube/config does not exist and \$KUBECONFIG is not set!${reset} "
+	exit 1
+fi
+echo 
+kubectl get node
+echo
 for nodepoolid in $(kubectl -n $clusterid get nodepool --no-headers -o=custom-columns=NAME:.metadata.name)
 do
         nodetemplateid=$(kubectl -n $clusterid get nodepool $nodepoolid -o json | jq -r .spec.nodeTemplateName | cut -d : -f 2)
         oldowner=$(kubectl -n $clusterid get nodepool $nodepoolid -o json | jq -r .spec.nodeTemplateName | cut -d : -f 1)
-        echo -e "\e[31mcreating new nodetemplate under $newowner's namespace\e[0m"
+        echo -e "${red}creating new nodetemplate under $newowner's namespace${reset}"
         kubectl -n $oldowner get nodetemplate $nodetemplateid -o yaml | sed 's/'$oldowner'/'$newowner'/g' | kubectl apply --namespace=$newowner -f -
-        echo -e "\e[31mpatching $nodepoolid old owner: $oldowner new owner: $newowner\e[0m"
+        echo -e "${red}patching $nodepoolid old owner: $oldowner new owner: $newowner${reset}"
         kubectl -n $clusterid patch nodepool $nodepoolid -p '{"spec":{"nodeTemplateName": "'$newowner:$nodetemplateid'"}}' --type=merge
 done
 echo
 echo
-echo -e "\e[92mWe're all done!  If you've used this script on a cluster previously, you'll likely see kubectl complain about existing nodetemplates.  This is safe to ignore.\e[0m"
+echo -e "${green}We're all done!  If see you kubectl complaining about duplicate nodetemplates, this is safe to ignore.${reset}"
