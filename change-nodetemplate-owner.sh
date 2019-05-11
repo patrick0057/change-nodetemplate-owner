@@ -48,6 +48,11 @@ then
         echo "mv jq-linux64 /bin/jq"
         exit 1
 fi
+if ! hash sed 2>/dev/null
+then
+        echo '!!!sed was not found!!!'
+        exit 1
+fi
 if [ ! -f ~/.kube/config ] && [ -z "$KUBECONFIG" ];
 then
 	echo "${red}~/.kube/config does not exist and \$KUBECONFIG is not set!${reset} "
