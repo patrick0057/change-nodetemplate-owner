@@ -1,3 +1,4 @@
+#!/bin/bash
 newowner=''
 clusterid=''
 while getopts "h:c:n:" opt; do
@@ -27,6 +28,8 @@ fi
 echo Cluster: $clusterid
 echo New Owner: $newowner
 echo 
+kubectl get node
+echo
 if ! hash kubectl 2>/dev/null
 then
         echo "!!!kubectl was not found!!!"
@@ -46,7 +49,7 @@ then
         exit 1
 fi
 
-for nodepoolid in $(kubectl -n c-48x9z get nodepool --no-headers -o=custom-columns=NAME:.metadata.name)
+for nodepoolid in $(kubectl -n $clusterid get nodepool --no-headers -o=custom-columns=NAME:.metadata.name)
 do
         nodetemplateid=$(kubectl -n $clusterid get nodepool $nodepoolid -o json | jq -r .spec.nodeTemplateName | cut -d : -f 2)
         oldowner=$(kubectl -n $clusterid get nodepool $nodepoolid -o json | jq -r .spec.nodeTemplateName | cut -d : -f 1)
