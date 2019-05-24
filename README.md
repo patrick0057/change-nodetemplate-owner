@@ -24,6 +24,7 @@ Run script with docker image:
     ```bash
     docker run -v $KUBECONFIG:/root/.kube/config patrick0057/change-nodetemplate-owner -t changenodetemplate -c <cluster-id>
     ```
+
 Run script from bash command line:
 
     ```bash
