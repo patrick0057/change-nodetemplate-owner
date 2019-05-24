@@ -17,7 +17,8 @@ This script will change your nodetemplate owner in Rancher 2.x.  You can run thi
   ```
 ## Assign a nodetemplate to a cluster's nodepool.
 Assign a nodetemplate to a cluster's nodepool.  This is useful for situations where the original owner of a cluster has been deleted which also deletes their nodetemplates.  To use this task successfully it is recommended that you create a new nodetemplate in the UI before 
-using it.  Make sure the node template matches the original ones as closely as possible.
+using it.  Make sure the node template matches the original ones as closely as possible.  You will be shown options to choose from and
+prompted for confirmation.
 
 Run script with docker image:
 
