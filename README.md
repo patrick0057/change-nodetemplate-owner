@@ -8,7 +8,7 @@ This script will change your nodetemplate owner in Rancher 2.x.  You can run thi
 3. To run the script using a docker image, make sure your $KUBECONFIG is set to the full path of your Rancher local cluster kube config then run the following command.
 
     ```bash
-    docker run -v $KUBECONFIG:/root/.kube/config patrick0057/change-nodetemplate-owner -c <cluster-id> -n <user-id>
+    docker run -ti -v $KUBECONFIG:/root/.kube/config patrick0057/change-nodetemplate-owner -c <cluster-id> -n <user-id>
     ```
 4. To run the script directly, just download change-nodetemplate-owner.sh, make sure your $KUBECONFIG or ~/.kube/config is pointing to the correct Rancher local cluster then run the following command:
 
@@ -23,7 +23,7 @@ prompted for confirmation.
 Run script with docker image:
 
   ```bash
-  docker run -v $KUBECONFIG:/root/.kube/config patrick0057/change-nodetemplate-owner -t changenodetemplate -c <cluster-id>
+  docker run -ti -v $KUBECONFIG:/root/.kube/config patrick0057/change-nodetemplate-owner -t changenodetemplate -c <cluster-id>
   ```
 Run script from bash command line:
 
