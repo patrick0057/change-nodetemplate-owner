@@ -20,7 +20,7 @@ Assign a nodetemplate to a cluster's nodepool.  This is useful for situations wh
 using it.  Make sure the node template matches the original ones as closely as possible.  You will be shown options to choose from and
 prompted for confirmation.
 
-Run script with docker image:
+Run script with docker image(MAKE SURE YOU HAVE -ti IN THE DOCKER COMMAND OR IT WILL LOOP FOREVER WAITING FOR INPUT:
 
   ```bash
   docker run -ti -v $KUBECONFIG:/root/.kube/config patrick0057/change-nodetemplate-owner -t changenodetemplate -c <cluster-id>
