@@ -22,8 +22,6 @@ prompted for confirmation.
 
 Run script with docker image
 
-**MAKE SURE YOU HAVE -ti IN THE DOCKER COMMAND OR IT WILL LOOP FOREVER WAITING FOR INPUT:**
-
   ```bash
   docker run -ti -v $KUBECONFIG:/root/.kube/config patrick0057/change-nodetemplate-owner -t changenodetemplate -c <cluster-id>
   ```
