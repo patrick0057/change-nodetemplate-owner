@@ -80,8 +80,14 @@ fi
 function yesno () {
     shopt -s nocasematch
     response=''
+    i=0
     while [[ ${response} != 'y' ]] && [[ ${response} != 'n' ]]
     do
+        i=$((i+1))
+        if [ $i -gt 10 ]; then
+            echo "Script is destined to loop forever, aborting!  Make sure your docker run command has -ti then try again."
+            exit 1
+        fi
         printf '(y/n): '
         read -n1 response
         echo
