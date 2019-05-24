@@ -26,6 +26,6 @@ Run script with docker image:
   ```
 Run script from bash command line:
 
-    ```bash
-    ./change-nodetemplate-owner.sh -t changenodetemplate -c <cluster-id>
-    ```
+  ```bash
+  ./change-nodetemplate-owner.sh -t changenodetemplate -c <cluster-id>
+  ```
