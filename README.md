@@ -27,5 +27,6 @@ Run script with docker image
 Run script from bash command line:
 
   ```bash
+  curl -LO https://github.com/patrick0057/change-nodetemplate-owner/raw/master/change-nodetemplate-owner.sh
   ./change-nodetemplate-owner.sh -t changenodetemplate -c <cluster-id>
   ```
