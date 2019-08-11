@@ -12,6 +12,7 @@ This script will change your nodetemplate owner in Rancher 2.x.  You can run thi
 4. To run the script directly, just download change-nodetemplate-owner.sh, make sure your $KUBECONFIG or ~/.kube/config is pointing to the correct Rancher local cluster then run the following command:
 
     ```bash
+    curl -LO https://github.com/patrick0057/change-nodetemplate-owner/raw/master/change-nodetemplate-owner.sh
     ./change-nodetemplate-owner.sh -c <cluster-id> -n <user-id>
     ```
 ## Assign a nodetemplate to a cluster's nodepool.
