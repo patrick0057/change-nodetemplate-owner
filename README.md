@@ -1,3 +1,7 @@
+## Update
+Note: As of Rancher v2.3.3 this should no longer be necessary.
+https://github.com/rancher/rancher/issues/12186
+
 ## Change nodetemplate owner
 This script will change your nodetemplate owner in Rancher 2.x.  You can run this script as a Docker image or directly as a bash script.  You'll need the cluster ID and the user ID you want to change the ownership to.
 1. To obtain the cluster ID in the Rancher user interface, Navigate to Global> "Your Cluster Name"> then grab the cluster ID from your address bar.  I have listed an example of the URL and a cluster ID derrived from the URL below.
